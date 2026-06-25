@@ -1,4 +1,4 @@
-package com.joaoneres.uolchallenge.data.model
+package com.joaoneres.uolchallenge.domain.model
 
 data class Customer(
     val id: String,

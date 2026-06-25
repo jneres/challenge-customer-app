@@ -1,6 +1,6 @@
 package com.joaoneres.uolchallenge.presentation.customerlist
 
-import com.joaoneres.uolchallenge.data.model.Customer
+import com.joaoneres.uolchallenge.domain.model.Customer
 
 sealed interface CustomerListUiState {
 

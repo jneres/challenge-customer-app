@@ -2,6 +2,7 @@ package com.joaoneres.uolchallenge.presentation.customerlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.joaoneres.uolchallenge.core.NetworkResult
 import com.joaoneres.uolchallenge.data.repository.CustomerRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,18 +21,22 @@ class CustomerListViewModel(
         viewModelScope.launch {
             _uiState.value = CustomerListUiState.Loading
 
-            repository
-                .getCustomers()
-                .onSuccess { customers ->
-                    _uiState.value =
-                        CustomerListUiState.Success(customers)
-                }
-                .onFailure {
-                    _uiState.value =
-                        CustomerListUiState.Error(
-                            it.message.orEmpty()
-                        )
-                }
+            val result = repository.getCustomers()
+
+            _uiState.value = when (result) {
+                is NetworkResult.Success ->
+                    CustomerListUiState.Success(result.data)
+                else ->
+                    CustomerListUiState.Error(mapErrorToMessage(result))
+            }
+        }
+    }
+
+    private fun mapErrorToMessage(result: NetworkResult<*>): String {
+        return when (result) {
+            is NetworkResult.NetworkError -> "Sem conexão com a internet"
+            is NetworkResult.BadRequest -> result.message ?: "Erro na requisição"
+            else -> "Ocorreu um erro inesperado"
         }
     }
 }

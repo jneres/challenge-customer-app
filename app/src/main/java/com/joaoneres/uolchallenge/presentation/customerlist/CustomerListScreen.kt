@@ -1,7 +1,5 @@
 package com.joaoneres.uolchallenge.presentation.customerlist
 
-import android.content.res.Resources
-import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,7 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.joaoneres.uolchallenge.R
-import com.joaoneres.uolchallenge.data.model.Customer
+import com.joaoneres.uolchallenge.domain.model.Customer
 import com.joaoneres.uolchallenge.presentation.componentes.UolTopBar
 import com.joaoneres.uolchallenge.presentation.navigation.Routes
 import com.joaoneres.uolchallenge.ui.theme.UolChallengeTheme
@@ -138,7 +136,7 @@ fun CustomerListContent(
             )
 
             Text(
-                text = stringResource(R.string.customer_list_count,customers.size),
+                text = stringResource(R.string.customer_list_count, customers.size),
                 color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(

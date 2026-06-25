@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.joaoneres.uolchallenge.R
 import com.joaoneres.uolchallenge.core.extensions.toRawGithubImageUrl
-import com.joaoneres.uolchallenge.data.model.Customer
+import com.joaoneres.uolchallenge.domain.model.Customer
 import com.joaoneres.uolchallenge.presentation.componentes.StatusChip
 import com.joaoneres.uolchallenge.ui.theme.UolChallengeTheme
 

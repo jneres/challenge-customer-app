@@ -1,6 +1,6 @@
 package com.joaoneres.uolchallenge.data.api
 
-import com.joaoneres.uolchallenge.data.model.CustomersResponse
+import com.joaoneres.uolchallenge.data.dto.CustomersResponse
 import retrofit2.Response
 import retrofit2.http.GET
 
