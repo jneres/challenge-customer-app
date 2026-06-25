@@ -17,10 +17,12 @@ class CustomerRepositoryImpl(
 
             if (response.isSuccessful) {
 
-                val customers = response.body()
-                    ?.customers
-                    ?.map { it.toCustomer() }
-                    .orEmpty()
+                val body = response.body()
+                    ?: return NetworkResult.UnknownError(
+                        IllegalStateException("Response body is null")
+                    )
+
+                val customers = body.customers.map { it.toCustomer() }
 
                 NetworkResult.Success(customers)
 

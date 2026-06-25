@@ -2,7 +2,7 @@ package com.joaoneres.uolchallenge.data.repository
 
 import com.joaoneres.uolchallenge.core.NetworkResult
 import com.joaoneres.uolchallenge.data.api.CustomerApi
-import com.joaoneres.uolchallenge.data.dto.CustomerDto
+import com.joaoneres.uolchallenge.data.model.dto.CustomerDto
 import com.joaoneres.uolchallenge.data.dto.CustomersResponse
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -94,29 +94,23 @@ class CustomerRepositoryImplTest {
 
     @Test
     fun `should return NetworkError when UnknownHostException occurs`() = runTest {
-        // given
         coEvery {
             api.getCustomers()
         } throws UnknownHostException()
 
-        // when
         val result = repository.getCustomers()
 
-        // then
         assertTrue(result is NetworkResult.NetworkError)
     }
 
     @Test
     fun `should return UnknownError when an unexpected exception occurs`() = runTest {
-        // given
         coEvery {
             api.getCustomers()
         } throws RuntimeException("Unexpected error")
 
-        // when
         val result = repository.getCustomers()
 
-        // then
         assertTrue(result is NetworkResult.UnknownError)
     }
 

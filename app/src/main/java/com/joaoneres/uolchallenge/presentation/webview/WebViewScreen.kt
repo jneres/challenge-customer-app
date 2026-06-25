@@ -1,3 +1,5 @@
+@file:Suppress("COMPOSE_APPLIER_CALL_MISMATCH")
+
 package com.joaoneres.uolchallenge.presentation.webview
 
 import android.webkit.WebResourceError
