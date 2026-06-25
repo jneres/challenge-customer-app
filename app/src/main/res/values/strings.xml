@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">UolChallenge</string>
+
+    <string name="uol_top_bar_go_back">Voltar</string>
+    <string name="status_active">ATIVO</string>
+    <string name="status_inactive">INATIVO</string>
+
+    <!--CustomerListScreen  -->
+    <string name="customer_list_top_bar_title">Lista de Clientes</string>
+    <string name="customer_list_title">Clientes</string>
+    <string name="customer_list_found">Encontramos</string>
+    <string name="customer_list_count">%1$d clientes.</string>
+    <string name="customer_list_card_no_name">Sem nome</string>
+    <string name="customer_list_card_image_button">Imagem</string>
+    <string name="customer_list_card_profile_button">Perfil</string>
+
+    <!--ImageScreen  -->
+    <string name="image_screen_title">Imagem do Cliente</string>
+
+    <!--WebViewScreen  -->
+    <string name="web_view_screen_title">Perfil do Cliente</string>
+    <string name="web_view_screen_error_message">Não foi possível carregar o perfil.</string>
+    <string name="web_view_screen_button_retry">Tentar novamente</string>
+
+</resources>
