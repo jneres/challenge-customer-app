@@ -5,7 +5,7 @@ import com.joaoneres.uolchallenge.domain.model.Customer
 
 fun CustomerDto.toCustomer(): Customer {
     return Customer(
-        id = id.orEmpty(),
+        id = id,
         name = name,
         email = email,
         phone = phone,
