@@ -30,11 +30,6 @@ class CustomerListViewModelTest {
         TestDataFactory.createCustomer()
     )
 
-    @Before
-    fun setup() {
-        viewModel = CustomerListViewModel(repository)
-    }
-
     @Test
     fun `should return Success state when repository returns Success`() = runTest {
 
@@ -42,7 +37,8 @@ class CustomerListViewModelTest {
             repository.getCustomers()
         } returns NetworkResult.Success(customers)
 
-        viewModel.loadCustomers()
+        viewModel = CustomerListViewModel(repository)
+
         advanceUntilIdle()
 
         val state = viewModel.uiState.value
@@ -60,9 +56,12 @@ class CustomerListViewModelTest {
 
         coEvery {
             repository.getCustomers()
-        } returns NetworkResult.NetworkError(UnknownHostException())
+        } returns NetworkResult.NetworkError(
+            UnknownHostException()
+        )
 
-        viewModel.loadCustomers()
+        viewModel = CustomerListViewModel(repository)
+
         advanceUntilIdle()
 
         val state = viewModel.uiState.value
@@ -71,7 +70,10 @@ class CustomerListViewModelTest {
 
         state as CustomerListUiState.Error
 
-        assertEquals(R.string.error_no_internet, state.messageResId)
+        assertEquals(
+            R.string.error_no_internet,
+            state.messageResId
+        )
     }
 
     @Test
@@ -81,7 +83,8 @@ class CustomerListViewModelTest {
             repository.getCustomers()
         } returns NetworkResult.BadRequest("Erro 400")
 
-        viewModel.loadCustomers()
+        viewModel = CustomerListViewModel(repository)
+
         advanceUntilIdle()
 
         val state = viewModel.uiState.value
@@ -90,7 +93,10 @@ class CustomerListViewModelTest {
 
         state as CustomerListUiState.Error
 
-        assertEquals(R.string.error_bad_request, state.messageResId)
+        assertEquals(
+            R.string.error_bad_request,
+            state.messageResId
+        )
     }
 
     @Test
@@ -100,7 +106,8 @@ class CustomerListViewModelTest {
             repository.getCustomers()
         } returns NetworkResult.BadRequest(null)
 
-        viewModel.loadCustomers()
+        viewModel = CustomerListViewModel(repository)
+
         advanceUntilIdle()
 
         val state = viewModel.uiState.value
@@ -109,7 +116,10 @@ class CustomerListViewModelTest {
 
         state as CustomerListUiState.Error
 
-        assertEquals(R.string.error_bad_request, state.messageResId)
+        assertEquals(
+            R.string.error_bad_request,
+            state.messageResId
+        )
     }
 
     @Test
@@ -117,9 +127,12 @@ class CustomerListViewModelTest {
 
         coEvery {
             repository.getCustomers()
-        } returns NetworkResult.UnknownError(RuntimeException())
+        } returns NetworkResult.UnknownError(
+            RuntimeException()
+        )
 
-        viewModel.loadCustomers()
+        viewModel = CustomerListViewModel(repository)
+
         advanceUntilIdle()
 
         val state = viewModel.uiState.value
@@ -128,11 +141,20 @@ class CustomerListViewModelTest {
 
         state as CustomerListUiState.Error
 
-        assertEquals(R.string.error_unknown, state.messageResId)
+        assertEquals(
+            R.string.error_unknown,
+            state.messageResId
+        )
     }
 
     @Test
-    fun `should start with Loading state`() {
+    fun `should start with Loading state`() = runTest {
+
+        coEvery {
+            repository.getCustomers()
+        } returns NetworkResult.Success(customers)
+
+        viewModel = CustomerListViewModel(repository)
 
         assertTrue(
             viewModel.uiState.value is CustomerListUiState.Loading
