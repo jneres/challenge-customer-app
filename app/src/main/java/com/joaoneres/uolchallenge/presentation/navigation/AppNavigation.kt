@@ -6,6 +6,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.joaoneres.uolchallenge.presentation.customerlist.CustomerListScreen
 import com.joaoneres.uolchallenge.presentation.image.ImageScreen
+import com.joaoneres.uolchallenge.presentation.navigation.Routes.IMAGE_URL
+import com.joaoneres.uolchallenge.presentation.navigation.Routes.URL
 import com.joaoneres.uolchallenge.presentation.webview.WebViewScreen
 
 @Composable
@@ -29,7 +31,7 @@ fun AppNavigation() {
         ) { backStackEntry ->
 
             val imageUrl = backStackEntry.arguments
-                    ?.getString("imageUrl").orEmpty()
+                ?.getString(IMAGE_URL).orEmpty()
 
             ImageScreen(
                 navController = navController,
@@ -42,7 +44,7 @@ fun AppNavigation() {
         ) { backStackEntry ->
 
             val url = backStackEntry.arguments
-                ?.getString("url").orEmpty()
+                ?.getString(URL).orEmpty()
 
             WebViewScreen(
                 navController,

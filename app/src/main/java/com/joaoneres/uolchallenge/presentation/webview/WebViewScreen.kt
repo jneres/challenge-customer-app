@@ -10,7 +10,6 @@ import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -27,12 +26,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
 import com.joaoneres.uolchallenge.R
 import com.joaoneres.uolchallenge.core.extensions.toSecureUrl
-import com.joaoneres.uolchallenge.presentation.componentes.UolTopBar
+import com.joaoneres.uolchallenge.ui.componentes.UolTopBar
+import com.joaoneres.uolchallenge.ui.theme.Dimens
 import kotlinx.coroutines.delay
 
 @Composable
@@ -206,9 +205,9 @@ fun WebViewScreen(
                     if (isLoading) {
                         CircularProgressIndicator(
                             modifier = Modifier
-                                .size(100.dp)
+                                .size(Dimens.spacing80)
                                 .align(Alignment.Center),
-                            strokeWidth = 8.dp
+                            strokeWidth = Dimens.spacing8
                         )
                     }
                 }

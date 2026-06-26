@@ -19,8 +19,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import com.joaoneres.uolchallenge.R
+import com.joaoneres.uolchallenge.ui.theme.Dimens
 
 @Composable
 fun ErrorComponent(
@@ -34,17 +34,17 @@ fun ErrorComponent(
 
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(24.dp)
+            modifier = Modifier.padding(Dimens.spacing24)
         ) {
 
             Icon(
                 imageVector = Icons.Outlined.Warning,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.error,
-                modifier = Modifier.size(64.dp)
+                modifier = Modifier.size(Dimens.spacing64)
             )
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(Dimens.spacing24))
 
             Text(
                 text = message,
@@ -52,7 +52,7 @@ fun ErrorComponent(
                 textAlign = TextAlign.Center
             )
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(Dimens.spacing24))
 
             Button(
                 onClick = onRetry,

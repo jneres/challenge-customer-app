@@ -14,6 +14,17 @@
     <string name="customer_list_card_image_button">Imagem</string>
     <string name="customer_list_card_profile_button">Perfil</string>
 
+    <!--CustomerListViewModel  -->
+    <string name="error_no_internet">Sem conexão com a internet</string>
+    <string name="error_bad_request">Erro na requisição</string>
+    <string name="error_unauthorized">Acesso não autorizado</string>
+    <string name="error_forbidden">Você não tem permissão para acessar este conteúdo</string>
+    <string name="error_not_found">Clientes não encontrados</string>
+    <string name="error_server">Servidor indisponível. Tente novamente</string>
+    <string name="error_unknown">Ocorreu um erro inesperado</string>
+    <string name="error_400">Erro 400</string>
+
+
     <!--ImageScreen  -->
     <string name="image_screen_title">Imagem do Cliente</string>
 
@@ -21,5 +32,7 @@
     <string name="web_view_screen_title">Perfil do Cliente</string>
     <string name="web_view_screen_error_message">Não foi possível carregar o perfil.</string>
     <string name="web_view_screen_button_retry">Tentar novamente</string>
+
+
 
 </resources>

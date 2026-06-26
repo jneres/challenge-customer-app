@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material3.Button
@@ -34,12 +33,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.joaoneres.uolchallenge.R
 import com.joaoneres.uolchallenge.core.extensions.toRawGithubImageUrl
 import com.joaoneres.uolchallenge.domain.model.Customer
-import com.joaoneres.uolchallenge.presentation.componentes.StatusChip
+import com.joaoneres.uolchallenge.ui.componentes.StatusChip
+import com.joaoneres.uolchallenge.ui.theme.Dimens
 import com.joaoneres.uolchallenge.ui.theme.UolChallengeTheme
 
 @Composable
@@ -53,20 +52,20 @@ fun CustomerCard(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.background)
             .fillMaxWidth()
-            .padding(vertical = 6.dp, horizontal = 12.dp),
+            .padding(vertical = Dimens.spacing6, horizontal = Dimens.spacing12),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 4.dp
+            defaultElevation = Dimens.spacing4
         )
     ) {
         Column(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.background)
-                .padding(12.dp)
+                .padding(Dimens.spacing12)
         ) {
 
             customer.status?.let { StatusChip(it) }
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(Dimens.spacing12))
 
             Row(
                 verticalAlignment = Alignment.CenterVertically
@@ -76,10 +75,10 @@ fun CustomerCard(
 
                 Box(
                     modifier = Modifier
-                        .size(80.dp)
+                        .size(Dimens.spacing80)
                         .clip(CircleShape)
                         .border(
-                            width = 1.dp,
+                            width = Dimens.borderLight,
                             color = Color.LightGray,
                             shape = CircleShape
                         ),
@@ -96,7 +95,7 @@ fun CustomerCard(
                     )
                 }
 
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(Dimens.spacing16))
 
                 Column(
                     modifier = Modifier.weight(1f)
@@ -105,20 +104,20 @@ fun CustomerCard(
                     Text(
                         text = customer.name ?: stringResource(R.string.customer_list_card_no_name),
                         style = MaterialTheme.typography.titleMedium,
-                        )
+                    )
 
                     if (!customer.email.isNullOrBlank()) {
                         Row(
-                            modifier = Modifier.padding(top = 6.dp),
+                            modifier = Modifier.padding(top = Dimens.spacing6),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.Email,
                                 contentDescription = null,
                                 tint = Color.Gray,
-                                modifier = Modifier.size(16.dp)
+                                modifier = Modifier.size(Dimens.spacing16)
                             )
-                            Spacer(modifier = Modifier.width(8.dp))
+                            Spacer(modifier = Modifier.width(Dimens.spacing8))
                             Text(text = customer.email)
                         }
                     }
@@ -126,23 +125,23 @@ fun CustomerCard(
                     if (!customer.phone.isNullOrBlank()) {
 
                         Row(
-                            modifier = Modifier.padding(top = 6.dp),
+                            modifier = Modifier.padding(top = Dimens.spacing6),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.Phone,
                                 contentDescription = null,
                                 tint = Color.Gray,
-                                modifier = Modifier.size(16.dp)
+                                modifier = Modifier.size(Dimens.spacing16)
                             )
-                            Spacer(modifier = Modifier.width(8.dp))
+                            Spacer(modifier = Modifier.width(Dimens.spacing8))
                             Text(text = customer.phone)
                         }
                     }
                 }
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(Dimens.spacing12))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -157,7 +156,7 @@ fun CustomerCard(
                     Text(stringResource(R.string.customer_list_card_image_button))
                 }
 
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(Dimens.spacing8))
 
                 Button(
                     onClick = {

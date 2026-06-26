@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -21,12 +20,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.joaoneres.uolchallenge.R
 import com.joaoneres.uolchallenge.domain.model.Customer
-import com.joaoneres.uolchallenge.presentation.componentes.UolTopBar
 import com.joaoneres.uolchallenge.presentation.navigation.Routes
+import com.joaoneres.uolchallenge.ui.componentes.UolTopBar
+import com.joaoneres.uolchallenge.ui.theme.Dimens
 import com.joaoneres.uolchallenge.ui.theme.UolChallengeTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -94,7 +93,7 @@ fun CustomerListScreen(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = state.message
+                        text = stringResource(state.messageResId)
                     )
                 }
             }
@@ -119,8 +118,8 @@ fun CustomerListContent(
             text = stringResource(R.string.customer_list_title),
             style = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.padding(
-                start = 16.dp,
-                top = 16.dp
+                start = Dimens.spacing16,
+                top = Dimens.spacing16
             )
         )
 
@@ -129,9 +128,9 @@ fun CustomerListContent(
                 text = stringResource(R.string.customer_list_found),
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(
-                    start = 16.dp,
-                    top = 4.dp,
-                    bottom = 8.dp
+                    start = Dimens.spacing16,
+                    top = Dimens.spacing4,
+                    bottom = Dimens.spacing8
                 )
             )
 
@@ -140,9 +139,9 @@ fun CustomerListContent(
                 color = MaterialTheme.colorScheme.primary,
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(
-                    start = 4.dp,
-                    top = 4.dp,
-                    bottom = 8.dp
+                    start = Dimens.spacing4,
+                    top = Dimens.spacing4,
+                    bottom = Dimens.spacing8
                 )
             )
         }

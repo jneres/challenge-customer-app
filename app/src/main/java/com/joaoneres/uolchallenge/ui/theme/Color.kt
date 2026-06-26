@@ -21,6 +21,8 @@ val UolLightGray = Color(0xFFF5F5F5)
 
 val UolWhite = Color(0xFFFFFFFF)
 
-// Status Colors
-val ActiveGreen = Color(0xFF4CAF50)
-val InactiveRed = Color(0xFFE53935)
+val ActiveBackground = Color(0xFFE8F8EC)
+val InactiveBackground = Color(0xFFFFEBEE)
+
+val ActiveDot = Color(0xFF22C55E)
+val InactiveDot = Color(0xFFE53935)

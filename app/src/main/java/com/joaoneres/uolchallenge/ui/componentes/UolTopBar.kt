@@ -1,4 +1,4 @@
-package com.joaoneres.uolchallenge.presentation.componentes
+package com.joaoneres.uolchallenge.ui.componentes
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack

@@ -1,7 +1,9 @@
 package com.joaoneres.uolchallenge.presentation.customerlist
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.joaoneres.uolchallenge.R
 import com.joaoneres.uolchallenge.core.NetworkResult
 import com.joaoneres.uolchallenge.domain.repository.CustomerRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -32,11 +34,34 @@ class CustomerListViewModel(
         }
     }
 
-    private fun mapErrorToMessage(result: NetworkResult<*>): String {
+    @StringRes
+    private fun mapErrorToMessage(
+        result: NetworkResult<*>
+    ): Int {
         return when (result) {
-            is NetworkResult.NetworkError -> "Sem conexão com a internet"
-            is NetworkResult.BadRequest -> result.message ?: "Erro na requisição"
-            else -> "Ocorreu um erro inesperado"
+            is NetworkResult.NetworkError ->
+                R.string.error_no_internet
+
+            is NetworkResult.BadRequest ->
+                R.string.error_bad_request
+
+            is NetworkResult.Unauthorized ->
+                R.string.error_unauthorized
+
+            is NetworkResult.Forbidden ->
+                R.string.error_forbidden
+
+            is NetworkResult.NotFound ->
+                R.string.error_not_found
+
+            is NetworkResult.ServerError ->
+                R.string.error_server
+
+            is NetworkResult.UnknownError ->
+                R.string.error_unknown
+
+            is NetworkResult.Success ->
+                error("Success não deve ser mapeado como erro")
         }
     }
 }

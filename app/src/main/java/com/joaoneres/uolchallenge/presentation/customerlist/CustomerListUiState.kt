@@ -1,5 +1,6 @@
 package com.joaoneres.uolchallenge.presentation.customerlist
 
+import androidx.annotation.StringRes
 import com.joaoneres.uolchallenge.domain.model.Customer
 
 sealed interface CustomerListUiState {
@@ -11,6 +12,6 @@ sealed interface CustomerListUiState {
     ) : CustomerListUiState
 
     data class Error(
-        val message: String
+        @StringRes val messageResId: Int
     ) : CustomerListUiState
 }

@@ -1,22 +1,30 @@
-package com.joaoneres.uolchallenge.presentation.componentes
-
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.unit.dp
+package com.joaoneres.uolchallenge.ui.componentes
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.joaoneres.uolchallenge.R
+import com.joaoneres.uolchallenge.ui.theme.ActiveBackground
+import com.joaoneres.uolchallenge.ui.theme.ActiveDot
+import com.joaoneres.uolchallenge.ui.theme.Dimens
+import com.joaoneres.uolchallenge.ui.theme.InactiveBackground
+import com.joaoneres.uolchallenge.ui.theme.InactiveDot
+
+private const val ACTIVE_STATUS = "active"
 
 @Composable
 fun StatusChip(
@@ -24,20 +32,20 @@ fun StatusChip(
 ) {
 
     val isActive = status.equals(
-        "active",
+        ACTIVE_STATUS,
         ignoreCase = true
     )
 
     val backgroundColor = if (isActive) {
-        Color(0xFFE8F8EC)
+        ActiveBackground
     } else {
-        Color(0xFFFFEBEE)
+        InactiveBackground
     }
 
     val dotColor = if (isActive) {
-        Color(0xFF22C55E)
+        ActiveDot
     } else {
-        Color(0xFFE53935)
+        InactiveDot
     }
 
     val text = if (isActive) {
@@ -51,15 +59,15 @@ fun StatusChip(
             .clip(RoundedCornerShape(20))
             .background(backgroundColor)
             .padding(
-                horizontal = 10.dp,
-                vertical = 4.dp
+                horizontal = Dimens.spacing10,
+                vertical = Dimens.spacing4
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
         Box(
             modifier = Modifier
-                .size(10.dp)
+                .size(Dimens.spacing10)
                 .background(
                     dotColor,
                     CircleShape
@@ -67,7 +75,7 @@ fun StatusChip(
         )
 
         Spacer(
-            modifier = Modifier.width(8.dp)
+            modifier = Modifier.width(Dimens.spacing8)
         )
 
         Text(

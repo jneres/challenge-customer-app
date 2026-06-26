@@ -1,9 +1,11 @@
 package com.joaoneres.uolchallenge.presentation.customerlist
 
+import com.joaoneres.uolchallenge.R
 import com.joaoneres.uolchallenge.core.NetworkResult
 import com.joaoneres.uolchallenge.domain.repository.CustomerRepository
 import com.joaoneres.uolchallenge.domain.model.Customer
 import com.joaoneres.uolchallenge.util.MainDispatcherRule
+import com.joaoneres.uolchallenge.util.TestDataFactory
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
@@ -26,15 +28,7 @@ class CustomerListViewModelTest {
     private lateinit var viewModel: CustomerListViewModel
 
     private val customers = listOf(
-        Customer(
-            id = "1",
-            name = "João",
-            email = "joao@email.com",
-            phone = "11999999999",
-            profileImage = "image",
-            profileLink = "link",
-            status = "ACTIVE"
-        )
+        TestDataFactory.createCustomer()
     )
 
     @Before
@@ -44,16 +38,14 @@ class CustomerListViewModelTest {
 
     @Test
     fun `should return Success state when repository returns Success`() = runTest {
-        // given
+
         coEvery {
             repository.getCustomers()
         } returns NetworkResult.Success(customers)
 
-        // when
         viewModel.loadCustomers()
         advanceUntilIdle()
 
-        // then
         val state = viewModel.uiState.value
 
         assertTrue(state is CustomerListUiState.Success)
@@ -66,86 +58,78 @@ class CustomerListViewModelTest {
 
     @Test
     fun `should return Error state when repository returns NetworkError`() = runTest {
-        // given
+
         coEvery {
             repository.getCustomers()
         } returns NetworkResult.NetworkError(UnknownHostException())
 
-        // when
         viewModel.loadCustomers()
         advanceUntilIdle()
 
-        // then
         val state = viewModel.uiState.value
 
         assertTrue(state is CustomerListUiState.Error)
 
         state as CustomerListUiState.Error
 
-        assertEquals("Sem conexão com a internet", state.message)
+        assertEquals(R.string.error_no_internet, state.messageResId)
     }
 
     @Test
     fun `should return Error state when repository returns BadRequest`() = runTest {
-        // given
+
         coEvery {
             repository.getCustomers()
         } returns NetworkResult.BadRequest("Erro 400")
 
-        // when
         viewModel.loadCustomers()
         advanceUntilIdle()
 
-        // then
         val state = viewModel.uiState.value
 
         assertTrue(state is CustomerListUiState.Error)
 
         state as CustomerListUiState.Error
 
-        assertEquals("Erro 400", state.message)
+        assertEquals(R.string.error_bad_request, state.messageResId)
     }
 
     @Test
     fun `should return default BadRequest message when message is null`() = runTest {
-        // given
+
         coEvery {
             repository.getCustomers()
         } returns NetworkResult.BadRequest(null)
 
-        // when
         viewModel.loadCustomers()
         advanceUntilIdle()
 
-        // then
         val state = viewModel.uiState.value
 
         assertTrue(state is CustomerListUiState.Error)
 
         state as CustomerListUiState.Error
 
-        assertEquals("Erro na requisição", state.message)
+        assertEquals(R.string.error_bad_request, state.messageResId)
     }
 
     @Test
     fun `should return Error state when repository returns UnknownError`() = runTest {
-        // given
+
         coEvery {
             repository.getCustomers()
         } returns NetworkResult.UnknownError(RuntimeException())
 
-        // when
         viewModel.loadCustomers()
         advanceUntilIdle()
 
-        // then
         val state = viewModel.uiState.value
 
         assertTrue(state is CustomerListUiState.Error)
 
         state as CustomerListUiState.Error
 
-        assertEquals("Ocorreu um erro inesperado", state.message)
+        assertEquals( R.string.error_unknown, state.messageResId)
     }
 
     @Test
