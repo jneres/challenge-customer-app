@@ -13,7 +13,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -24,6 +23,7 @@ import androidx.navigation.NavController
 import com.joaoneres.uolchallenge.R
 import com.joaoneres.uolchallenge.domain.model.Customer
 import com.joaoneres.uolchallenge.presentation.navigation.Routes
+import com.joaoneres.uolchallenge.presentation.webview.ErrorComponent
 import com.joaoneres.uolchallenge.ui.componentes.UolTopBar
 import com.joaoneres.uolchallenge.ui.theme.Dimens
 import com.joaoneres.uolchallenge.ui.theme.UolChallengeTheme
@@ -37,10 +37,6 @@ fun CustomerListScreen(
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
-
-    LaunchedEffect(Unit) {
-        viewModel.loadCustomers()
-    }
 
     Scaffold(
         topBar = {
@@ -92,8 +88,9 @@ fun CustomerListScreen(
                         .padding(paddingValues),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        text = stringResource(state.messageResId)
+                    ErrorComponent(
+                        message = stringResource(state.messageResId),
+                        onRetry = viewModel::loadCustomers
                     )
                 }
             }
@@ -146,7 +143,10 @@ fun CustomerListContent(
             )
         }
         LazyColumn {
-            items(customers) { customer ->
+            items(
+                items = customers,
+                key = { customer -> customer.id }
+            ) { customer ->
                 CustomerCard(
                     customer = customer,
                     onProfileClick = onProfileClick,

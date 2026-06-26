@@ -19,6 +19,10 @@ class CustomerListViewModel(
         )
     val uiState = _uiState.asStateFlow()
 
+    init {
+        loadCustomers()
+    }
+
     fun loadCustomers() {
         viewModelScope.launch {
             _uiState.value = CustomerListUiState.Loading
