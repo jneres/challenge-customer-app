@@ -57,11 +57,8 @@ class CustomerListViewModel(
             is NetworkResult.ServerError ->
                 R.string.error_server
 
-            is NetworkResult.UnknownError ->
+            else ->
                 R.string.error_unknown
-
-            is NetworkResult.Success ->
-                error("Success não deve ser mapeado como erro")
         }
     }
 }
