@@ -27,7 +27,6 @@ fun ErrorComponent(
     message: String,
     onRetry: () -> Unit
 ) {
-
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center

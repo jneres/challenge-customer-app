@@ -1,6 +1,6 @@
 package com.joaoneres.uolchallenge.data.mappers
 
-import com.joaoneres.uolchallenge.data.model.dto.CustomerDto
+import com.joaoneres.uolchallenge.data.model.response.CustomerResponse
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
@@ -9,7 +9,7 @@ class CustomerMapperTest {
     @Test
     fun `should map CustomerDto to Customer`() {
 
-        val dto = CustomerDto(
+        val dto = CustomerResponse(
             id = "1",
             name = "João",
             email = "joao@email.com",

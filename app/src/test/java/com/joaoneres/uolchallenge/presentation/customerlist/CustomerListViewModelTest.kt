@@ -1,7 +1,7 @@
 package com.joaoneres.uolchallenge.presentation.customerlist
 
 import com.joaoneres.uolchallenge.core.NetworkResult
-import com.joaoneres.uolchallenge.data.repository.CustomerRepository
+import com.joaoneres.uolchallenge.domain.repository.CustomerRepository
 import com.joaoneres.uolchallenge.domain.model.Customer
 import com.joaoneres.uolchallenge.util.MainDispatcherRule
 import io.mockk.coEvery

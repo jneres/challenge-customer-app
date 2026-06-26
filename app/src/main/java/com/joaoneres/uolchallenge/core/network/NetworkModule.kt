@@ -1,7 +1,7 @@
 package com.joaoneres.uolchallenge.core.network
 
 import com.joaoneres.uolchallenge.data.api.CustomerApi
-import com.joaoneres.uolchallenge.data.repository.CustomerRepository
+import com.joaoneres.uolchallenge.domain.repository.CustomerRepository
 import com.joaoneres.uolchallenge.data.repository.CustomerRepositoryImpl
 import com.joaoneres.uolchallenge.presentation.customerlist.CustomerListViewModel
 import okhttp3.OkHttpClient
@@ -12,6 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+private const val CONNECT_TIMEOUT_SECONDS = 30L
 val networkModule = module {
 
     single {
@@ -23,7 +24,7 @@ val networkModule = module {
     single {
         OkHttpClient.Builder()
             .addInterceptor(get<HttpLoggingInterceptor>())
-            .connectTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
             .build()
     }
 

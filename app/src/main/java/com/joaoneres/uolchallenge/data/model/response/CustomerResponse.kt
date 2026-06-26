@@ -1,6 +1,6 @@
-package com.joaoneres.uolchallenge.data.dto
+package com.joaoneres.uolchallenge.data.model.response
 
-data class CustomerDto(
+data class CustomerResponse(
     val id: String,
     val name: String?,
     val email: String?,

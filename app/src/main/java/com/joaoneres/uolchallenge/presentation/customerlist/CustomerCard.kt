@@ -85,28 +85,15 @@ fun CustomerCard(
                         ),
                     contentAlignment = Alignment.Center
                 ) {
-
-                    if (imageUrl != null) {
-
-                        AsyncImage(
-                            model = imageUrl,
-                            contentDescription = customer.name,
-                            contentScale = ContentScale.Crop,
-                            placeholder = painterResource(R.drawable.ic_person_placeholder),
-                            error = painterResource(R.drawable.ic_person_placeholder),
-                            modifier = Modifier.fillMaxSize()
-                        )
-
-                    } else {
-
-                        Icon(
-                            imageVector = Icons.Default.Person,
-                            contentDescription = null,
-                            tint = Color.Gray,
-                            modifier = Modifier.size(72.dp)
-                        )
-
-                    }
+                    AsyncImage(
+                        model = imageUrl,
+                        contentDescription = customer.name,
+                        contentScale = ContentScale.Crop,
+                        placeholder = painterResource(R.drawable.ic_person_placeholder),
+                        error = painterResource(R.drawable.ic_person_placeholder),
+                        fallback = painterResource(R.drawable.ic_person_placeholder),
+                        modifier = Modifier.fillMaxSize()
+                    )
                 }
 
                 Spacer(modifier = Modifier.width(16.dp))
@@ -164,7 +151,7 @@ fun CustomerCard(
 
                 OutlinedButton(
                     onClick = {
-                        customer.profileImage?.let(onImageClick)
+                        onImageClick(customer.profileImage.orEmpty())
                     }
                 ) {
                     Text(stringResource(R.string.customer_list_card_image_button))
@@ -174,7 +161,7 @@ fun CustomerCard(
 
                 Button(
                     onClick = {
-                        customer.profileLink?.let(onProfileClick)
+                        onProfileClick(customer.profileLink.orEmpty())
                     }
                 ) {
                     Text(stringResource(R.string.customer_list_card_profile_button))

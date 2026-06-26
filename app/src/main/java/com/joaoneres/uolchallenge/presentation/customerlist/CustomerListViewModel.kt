@@ -3,7 +3,7 @@ package com.joaoneres.uolchallenge.presentation.customerlist
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.joaoneres.uolchallenge.core.NetworkResult
-import com.joaoneres.uolchallenge.data.repository.CustomerRepository
+import com.joaoneres.uolchallenge.domain.repository.CustomerRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch

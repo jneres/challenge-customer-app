@@ -2,8 +2,8 @@ package com.joaoneres.uolchallenge.data.repository
 
 import com.joaoneres.uolchallenge.core.NetworkResult
 import com.joaoneres.uolchallenge.data.api.CustomerApi
-import com.joaoneres.uolchallenge.data.model.dto.CustomerDto
-import com.joaoneres.uolchallenge.data.dto.CustomersResponse
+import com.joaoneres.uolchallenge.data.model.response.CustomerResponse
+import com.joaoneres.uolchallenge.data.model.response.BaseCustomersResponse
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
@@ -21,7 +21,7 @@ class CustomerRepositoryImplTest {
     private val api: CustomerApi = mockk()
     private lateinit var repository: CustomerRepositoryImpl
 
-    private val customerDto  = CustomerDto(
+    private val customerDto  = CustomerResponse(
         id = "1",
         name = "João",
         email = "joao@email.com",
@@ -40,7 +40,7 @@ class CustomerRepositoryImplTest {
     fun `should return Success when API responds with 200`() = runTest {
 
         val response = Response.success(
-            CustomersResponse(
+            BaseCustomersResponse(
                 customers = listOf(customerDto )
             )
         )
@@ -62,7 +62,7 @@ class CustomerRepositoryImplTest {
     @Test
     fun `should return BadRequest when API returns 400`() = runTest {
 
-        val response = Response.error<CustomersResponse>(
+        val response = Response.error<BaseCustomersResponse>(
             400,
             "".toResponseBody("application/json".toMediaType())
         )
@@ -78,17 +78,15 @@ class CustomerRepositoryImplTest {
 
     @Test
     fun `should return UnknownError when response body is null`() = runTest {
-        // given
-        val response = Response.success<CustomersResponse>(null)
+
+        val response = Response.success<BaseCustomersResponse>(null)
 
         coEvery {
             api.getCustomers()
         } returns response
 
-        // when
         val result = repository.getCustomers()
 
-        // then
         assertTrue(result is NetworkResult.UnknownError)
     }
 

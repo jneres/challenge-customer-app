@@ -10,3 +10,11 @@ fun String.toRawGithubImageUrl(): String {
             "newloran2/testApp2026/"
         )
 }
+
+fun String.toSecureUrl(): String {
+    return when {
+        startsWith("https://") -> this
+        startsWith("http://") -> replaceFirst("http://", "https://")
+        else -> "https://$this"
+    }
+}
