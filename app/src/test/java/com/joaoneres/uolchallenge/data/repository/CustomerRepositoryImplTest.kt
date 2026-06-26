@@ -2,7 +2,6 @@ package com.joaoneres.uolchallenge.data.repository
 
 import com.joaoneres.uolchallenge.core.NetworkResult
 import com.joaoneres.uolchallenge.data.api.CustomerApi
-import com.joaoneres.uolchallenge.data.model.response.CustomerResponse
 import com.joaoneres.uolchallenge.data.model.response.BaseCustomersResponse
 import com.joaoneres.uolchallenge.util.TestDataFactory
 import io.mockk.coEvery
@@ -25,7 +24,7 @@ class CustomerRepositoryImplTest {
 
     private val api: CustomerApi = mockk()
     private lateinit var repository: CustomerRepositoryImpl
-    private val customerDto  = TestDataFactory.createCustomerResponse()
+    private val customerDto = TestDataFactory.createCustomerResponse()
 
     @Before
     fun setup() {
@@ -37,7 +36,7 @@ class CustomerRepositoryImplTest {
 
         val response = Response.success(
             BaseCustomersResponse(
-                customers = listOf(customerDto )
+                customers = listOf(customerDto)
             )
         )
 

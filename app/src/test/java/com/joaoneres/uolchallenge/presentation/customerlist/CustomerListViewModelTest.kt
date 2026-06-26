@@ -3,7 +3,6 @@ package com.joaoneres.uolchallenge.presentation.customerlist
 import com.joaoneres.uolchallenge.R
 import com.joaoneres.uolchallenge.core.NetworkResult
 import com.joaoneres.uolchallenge.domain.repository.CustomerRepository
-import com.joaoneres.uolchallenge.domain.model.Customer
 import com.joaoneres.uolchallenge.util.MainDispatcherRule
 import com.joaoneres.uolchallenge.util.TestDataFactory
 import io.mockk.coEvery
@@ -129,7 +128,7 @@ class CustomerListViewModelTest {
 
         state as CustomerListUiState.Error
 
-        assertEquals( R.string.error_unknown, state.messageResId)
+        assertEquals(R.string.error_unknown, state.messageResId)
     }
 
     @Test
